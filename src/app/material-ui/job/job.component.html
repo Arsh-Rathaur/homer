@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-card-title>{{ job.name }}</mat-card-title>
+    <mat-card-content>
+        <span>{{ startDateStr }} - {{ endDateStr }}</span>
+    </mat-card-content>
+    <mat-card-actions>
+        <button *ngIf="!job.isComplete() && !job.isCancelled()" mat-raised-button (click)="onComplete.emit(job)"><mat-icon>done</mat-icon> Complete</button>
+        <button mat-raised-button color="warn" (click)="onDelete.emit(job)"><mat-icon>delete</mat-icon> Delete</button>
+        <button *ngIf="!job.isComplete() && !job.isCancelled()" mat-raised-button color="warn" (click)="onCancel.emit(job)"><mat-icon>highlight_off</mat-icon> Cancel</button>
+    </mat-card-actions>
+</mat-card>

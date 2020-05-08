@@ -1,0 +1,21 @@
+<div>
+    <h1>Material UI Example Page</h1>
+    <app-create-job-form (addJob)="handleCreate($event)"></app-create-job-form>
+    <mat-tab-group>
+        <mat-tab label="Pending {{ pendingJobs.length }}">
+            <div *ngFor="let job of pendingJobs" >
+                <app-job [job]="job" (onDelete)="handleDelete(job)" (onComplete)="handleComplete(job)" (onCancel)="handleCancel(job)"></app-job>
+            </div>
+        </mat-tab>
+        <mat-tab label="Completed {{ completedJobs.length }}">
+            <div *ngFor="let job of completedJobs" >
+                <app-job [job]="job" (onDelete)="handleDelete(job)"></app-job>
+            </div>
+        </mat-tab>
+        <mat-tab label="Cancelled {{ cancelledJobs.length }}">
+            <div *ngFor="let job of cancelledJobs" >
+                <app-job [job]="job" (onDelete)="handleDelete(job)"></app-job>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

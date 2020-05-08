@@ -1,0 +1,52 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        <h2>Create Job</h2>
+    </mat-expansion-panel-header>
+    <mat-horizontal-stepper #stepper>
+        <mat-step [stepControl]="firstFormGroup">
+            <form class="create-job-form">
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Name</mat-label>
+                        <input matInput placeholder="Enter name..." [formControl]="name">
+                        <mat-error *ngIf="name.hasError('required')">
+                            Name is <strong>required</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose a start date</mat-label>
+                        <input matInput [matDatepicker]="picker" [formControl]="startDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Choose an end date</mat-label>
+                        <input matInput [matDatepicker]="picker2" [formControl]="endDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                        <mat-datepicker #picker2></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <button *ngIf="!name.invalid && !startDate.invalid && !endDate.invalid"  mat-button matStepperNext>Next</button>
+            </form>
+        </mat-step>
+        <mat-step [stepControl]="firstFormGroup">
+            <form class="create-job-form" (ngSubmit)="finishSubmit()">
+                <h2>Check information</h2>
+                <p>Please check the entered information below</p>
+                <mat-form-field>
+                    <input matInput disabled value="{{ name.value }}">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput disabled value="{{ startDate.value.format('YYYY-MM-DD') }}">
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput disabled value="{{ startDate.value.format('YYYY-MM-DD') }}">
+                </mat-form-field>
+            </form>
+        </mat-step>
+    </mat-horizontal-stepper>
+</mat-expansion-panel>
