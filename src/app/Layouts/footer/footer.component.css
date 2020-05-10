@@ -1,0 +1,11 @@
+.footer {
+    /* flex-shrink: 0; */
+    background-color:gray;
+    /* margin-top: 5%; */
+}
+
+
+.center{
+    display: flex;
+    align-items: center;
+}
